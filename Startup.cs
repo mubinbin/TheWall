@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TheWall.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TheWall
 {
@@ -23,6 +25,10 @@ namespace TheWall
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();
+            services.AddDbContext<MyContext>(options => options.UseMySql (Configuration["DBInfo:ConnectionString"]));
+            services.AddMvc(options => options.EnableEndpointRouting = false);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,16 +44,10 @@ namespace TheWall
             }
             app.UseStaticFiles();
 
-            app.UseRouting();
-
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseSession();
+            app.UseMvc();
         }
     }
 }

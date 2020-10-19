@@ -1,0 +1,15 @@
+@{
+    Layout = null;
+}
+
+@model TheWall.Models.Message
+
+<form id="#new-mes-form" method="POST" autocomplete="off" onsubmit="return mespost(this);" asp-controller="Home" asp-action="ProcessNewMessage">
+    <div class="form-group">
+        <p><span class="text-danger" asp-validation-for="MessageContent"></span></p>
+        <textarea class="form-control" rows="4" id="message-text" asp-for="MessageContent"></textarea>
+    </div>
+    <input type="hidden" asp-for="UserId" value = "@ViewBag.curuser.UserId">
+    
+    <input class="btn btn-primary w-100" type="submit" value="Post">
+</form>

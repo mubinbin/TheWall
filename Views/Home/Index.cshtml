@@ -1,8 +1,44 @@
 ﻿@{
+    Layout = "_LayoutReg";
     ViewData["Title"] = "Home Page";
 }
+@model User
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-sm-5">
+        <h3>Register</h3>
+        <form asp-controller="Home" asp-action="ProcessReg" method="POST">
+            <div class="form-group">
+                <p><span class="text-danger" asp-validation-for="Name"></span></p>
+                <label asp-for="Name"></label>
+                <input class="form-control" asp-for="Name">
+            </div>
+
+            <div class="form-group">
+                <p><span class="text-danger" asp-validation-for="Email"></span></p>
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email">
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+            <div class="form-group">
+                <p><span class="text-danger" asp-validation-for="Password"></span></p>
+                <label asp-for="Password"></label>
+                <input class="form-control" asp-for="Password">
+                <small class="form-text text-muted">Password need to be at least 8 characters.</small>
+            </div>
+            <div class="form-group">
+                <p><span class="text-danger" asp-validation-for="ConfirmPW"></span></p>
+                <label asp-for="ConfirmPW"></label>
+                <input class="form-control" asp-for="ConfirmPW">
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+    
+    <div class="col-sm-5">
+        <h3>Log in</h3>
+        <partial name="_Login"/>
+    </div>
 </div>

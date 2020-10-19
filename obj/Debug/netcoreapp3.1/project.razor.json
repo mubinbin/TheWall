@@ -14397,6 +14397,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_PostComment.cshtml",
+      "TargetPath": "Views\\Home\\_PostComment.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -14407,8 +14412,18 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_PostMessage.cshtml",
+      "TargetPath": "Views\\Home\\_PostMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Shared\\_Modal.cshtml",
+      "TargetPath": "Views\\Shared\\_Modal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_Login.cshtml",
+      "TargetPath": "Views\\Home\\_Login.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14419,6 +14434,26 @@
     {
       "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Shared\\_LayoutReg.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutReg.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\Wall.cshtml",
+      "TargetPath": "Views\\Home\\Wall.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_ShowMessage.cshtml",
+      "TargetPath": "Views\\Home\\_ShowMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_ShowCommnet.cshtml",
+      "TargetPath": "Views\\Home\\_ShowCommnet.cshtml",
       "FileKind": "mvc"
     },
     {

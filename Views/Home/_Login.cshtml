@@ -1,0 +1,16 @@
+@model Login
+
+<form asp-controller="Home" asp-action="ProcessLogin" method="POST">
+    <p><span class="text-danger" asp-validation-for="LEmail"></span></p>
+    <p><span class="text-danger" asp-validation-for="LPassword"></span></p>
+    <div class="form-group">
+        <label asp-for="LEmail"></label>
+        <input class="form-control" asp-for="LEmail" value="12@email.com">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LPassword"></label>
+        <input class="form-control" asp-for="LPassword" value="11111111">
+    </div>
+    <button type="submit" class="btn btn-primary">Log in</button>
+</form>
