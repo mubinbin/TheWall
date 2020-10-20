@@ -4,17 +4,21 @@
         {
             <div class="p-3 font-weight-bold text-primary">@m.Creator.Name - @m.UpdatedAt
             </div>
-            <div class="p-4">@m.MessageContent</div>
-            if(m.Creator == ViewBag.curuser)
-            {
-                <div>
-                    <a class="btn btn-success" href="">Edit</a>
-                    <a class="btn btn-danger" href="">Delete</a>
-                </div>
+            <div class="pl-3 py-2">@m.MessageContent</div>
+            <div class="my-4 row col-sm-3">
+                <a class="col text-success" style="cursor: pointer;"><i class="fa fa-comment"></i></a>
+            @{
+                if(m.Creator == ViewBag.curuser)
+                {
+                    <a class="col text-info" style="cursor: pointer;" onclick="showModal('/editmessagepartial/@m.MessageId', 'Edit Message')"><i class="fas fa-pencil-alt"></i></a>
+
+                    <partial name="_Delete" model="m"/>
+                }
             }
+            </div>
             foreach(Comment c in m.CommentsForMessage){
-                <div class="p-5 font-weight-bold text-primary">@c.Creator.Name - @c.UpdatedAt</div>
-                <div class="p-5">@c.CommentContent</div>
+                <div class="px-5 py-4 font-weight-bold text-primary">@c.Creator.Name - @c.UpdatedAt</div>
+                <div class="px-5 py-2">@c.CommentContent</div>
                 if(c.Creator == ViewBag.curuser)
                 {
                     <div>

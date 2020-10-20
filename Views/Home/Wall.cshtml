@@ -6,10 +6,11 @@
 @{
     List<Message> allmessages = Model.Messages
             .Include(m=>m.CommentsForMessage)
-            .OrderByDescending(m=>m.CreatedAt)
+            .Include(m=>m.Creator)
+            .OrderByDescending(m=>m.UpdatedAt)
             .ToList();
 }
-<a class="btn btn-success text-white" onclick="showModal('/newmessagepartial', 'New Message')">New Message</a>
+<a class="btn btn-success btn-sm text-white" onclick="showModal('/newmessagepartial', 'New Message')"><i class="fa fa-plus"></i> New Message</a>
 
 <partial name="_Modal"/>
 

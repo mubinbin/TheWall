@@ -14452,6 +14452,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_EditMessage.cshtml",
+      "TargetPath": "Views\\Home\\_EditMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_Delete.cshtml",
+      "TargetPath": "Views\\Home\\_Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Dojo_Assignments\\C#\\ORM\\TheWall\\Views\\Home\\_ShowCommnet.cshtml",
       "TargetPath": "Views\\Home\\_ShowCommnet.cshtml",
       "FileKind": "mvc"

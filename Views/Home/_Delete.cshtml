@@ -1,0 +1,7 @@
+@model TheWall.Models.Message
+
+<form method="POST" asp-action="DelMes" class="d-inline" asp-controller="Home" onsubmit="return del(this, 'message');">
+    <input type="hidden" value="@Model.MessageId">
+    <button style="border: none; background-color: transparent;" type="submit" class="col text-danger" style="cursor: pointer;" ><i class="fas fa-trash-alt"></i></button>
+
+</form>
