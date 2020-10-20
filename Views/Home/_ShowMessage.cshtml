@@ -1,34 +1,44 @@
 @model List<Message>
 @{
         foreach(Message m in Model)
-        {
-            <div class="p-3 font-weight-bold text-primary">@m.Creator.Name - @m.UpdatedAt
+        {   
+            <div class="pl-3 font-weight-bold text-primary">@m.Creator.Name - @m.UpdatedAt
             </div>
             <div class="pl-3 py-2">@m.MessageContent</div>
             <div class="my-4 row col-sm-3">
-                <a class="col text-success" style="cursor: pointer;"><i class="fa fa-comment"></i></a>
-            @{
-                if(m.Creator == ViewBag.curuser)
-                {
-                    <a class="col text-info" style="cursor: pointer;" onclick="showModal('/editmessagepartial/@m.MessageId', 'Edit Message')"><i class="fas fa-pencil-alt"></i></a>
+                <a id="new-comment" class="col text-success" style="cursor: pointer;" onclick="showModal('/newcommentpartial/@m.MessageId', 'New Comment')"><i class="fa fa-comment"></i></a>
+                @{
+                    if(m.Creator == ViewBag.curuser)
+                    {
+                        <a id="edit-message" class="col text-info" style="cursor: pointer;" onclick="showModal('/editmessagepartial/@m.MessageId', 'Edit Message')"><i class="fas fa-pencil-alt"></i></a>
 
-                    <partial name="_Delete" model="m"/>
+                        <partial name="_DeleteMessage" model="m"/>
+                    }
                 }
-            }
             </div>
-            foreach(Comment c in m.CommentsForMessage){
-                <div class="px-5 py-4 font-weight-bold text-primary">@c.Creator.Name - @c.UpdatedAt</div>
-                <div class="px-5 py-2">@c.CommentContent</div>
-                if(c.Creator == ViewBag.curuser)
+            <hr>
+            
+            if(m.CommentsForMessage.Count>0)
+            {
+                <p class="pl-3 font-weight-bold">Comment:</p>
+                foreach(Comment c in m.CommentsForMessage)
                 {
-                    <div>
-                        <a class="btn btn-success" href="">Edit</a>
-                        <a class="btn btn-danger" href="">Delete</a>
+                    <div class="pl-5 font-weight-bold text-primary">
+                        <span>@c.Creator.Name - @c.CreatedAt</span>
+                    
+                    @{
+
+                        if(c.Creator == ViewBag.curuser)
+                        {
+                            <partial name="_DeleteComment" model="c"/>
+                        }
+                    }
                     </div>
+                    <div class="pl-5 py-2 mb-4">
+                        @c.CommentContent
+                    </div>
+                    <hr>
                 }
             }
-            <div>
-                @* for partial add Comment *@
-            </div>
         }
-    }
+}

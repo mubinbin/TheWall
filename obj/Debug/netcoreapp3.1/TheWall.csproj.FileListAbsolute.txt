@@ -64,6 +64,7 @@ D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_Pos
 D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_PostMessage.cshtml.g.cs
 D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_ShowCommnet.cshtml.g.cs
 D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_ShowMessage.cshtml.g.cs
-D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Modal.cshtml.g.cs
 D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_EditMessage.cshtml.g.cs
-D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_Delete.cshtml.g.cs
+D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Modal.cshtml.g.cs
+D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_DeleteComment.cshtml.g.cs
+D:\Dojo_Assignments\C#\ORM\TheWall\obj\Debug\netcoreapp3.1\Razor\Views\Home\_DeleteMessage.cshtml.g.cs

@@ -108,6 +108,7 @@ namespace TheWall.Controllers
 
                 List<Message> allmessages = _context.Messages
                 .Include(m=>m.CommentsForMessage)
+                .ThenInclude(c=>c.Creator)
                 .Include(m=>m.Creator)
                 .OrderByDescending(m=>m.UpdatedAt)
                 .ToList();
@@ -120,7 +121,7 @@ namespace TheWall.Controllers
 
 
         [HttpGet("newmessagepartial")]
-        public ViewResult NewMessage()
+        public PartialViewResult NewMessage()
         {
 
             int userid = (int)HttpContext.Session.GetInt32("UserId");
@@ -128,7 +129,7 @@ namespace TheWall.Controllers
             ViewBag.curuser = _context.Users
             .FirstOrDefault(u=>u.UserId == userid);
 
-            return View("_PostMessage");
+            return PartialView("_PostMessage");
         }
 
         [ValidateAntiForgeryToken]
@@ -148,6 +149,8 @@ namespace TheWall.Controllers
 
                 var html = Helper.RenderRazorViewToString(this, "_ShowMessage", _context.Messages
                 .Include(m=>m.CommentsForMessage)
+                .ThenInclude(c=>c.Creator)
+                .Include(m=>m.Creator)
                 .OrderByDescending(m=>m.UpdatedAt)
                 .ToList());
                 
@@ -174,17 +177,17 @@ namespace TheWall.Controllers
 
 
         [HttpGet("editmessagepartial/{MessageId}")]
-        public ViewResult EditMessage(int MessageId)
+        public PartialViewResult EditMessage(int MessageId)
         {   
 
             int userid = (int)HttpContext.Session.GetInt32("UserId");
 
             ViewBag.curuser = _context.Users
             .FirstOrDefault(u=>u.UserId == userid);
-
             ViewBag.curMessage = _context.Messages
             .FirstOrDefault(m=>m.MessageId==MessageId);
-            return View("_EditMessage");
+
+            return PartialView("_EditMessage");
         }
 
         [ValidateAntiForgeryToken]
@@ -209,6 +212,7 @@ namespace TheWall.Controllers
 
                 var html = Helper.RenderRazorViewToString(this, "_ShowMessage", _context.Messages
                 .Include(m=>m.CommentsForMessage)
+                .ThenInclude(c=>c.Creator)
                 .Include(m=>m.Creator)
                 .OrderByDescending(m=>m.UpdatedAt)
                 .ToList());
@@ -234,24 +238,33 @@ namespace TheWall.Controllers
             }
         }
 
-        // delete message
+        // delete message or comment
         [ValidateAntiForgeryToken]
         [HttpPost("deletemessage")]
-        public JsonResult DelMes(int MessageId)
+        public JsonResult DelMes(int MessageId, int CommentId)
         {
-
             int userid = (int)HttpContext.Session.GetInt32("UserId");
 
             ViewBag.curuser =  _context.Users
             .FirstOrDefault(u=>u.UserId == userid);
+            
+            if(MessageId != 0)
+            {
+                Message MessageToDelete = _context.Messages
+                .FirstOrDefault(m=>m.MessageId==MessageId);
+                _context.Messages.Remove(MessageToDelete);
+                _context.SaveChanges();
 
-            Message MessageToDelete = _context.Messages
-            .FirstOrDefault(m=>m.MessageId==MessageId);
-            _context.Messages.Remove(MessageToDelete);
-            _context.SaveChangesAsync();
+            }else{
+                Comment CommentToDelete = _context.Comments
+                .FirstOrDefault(c=>c.CommentId==CommentId);
+                _context.Comments.Remove(CommentToDelete);
+                _context.SaveChanges();
+            }
 
             var html = Helper.RenderRazorViewToString(this,"_ShowMessage", _context.Messages
             .Include(m=>m.CommentsForMessage)
+            .ThenInclude(c=>c.Creator)
             .Include(m=>m.Creator)
             .OrderByDescending(m=>m.UpdatedAt)
             .ToList());
@@ -265,101 +278,64 @@ namespace TheWall.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        [HttpGet("newcommentpartial/{MessageId}")]
+        public PartialViewResult NewComment(int MessageId)
+        {
+
+            int userid = (int)HttpContext.Session.GetInt32("UserId");
+
+            ViewBag.curuser = _context.Users
+            .FirstOrDefault(u=>u.UserId == userid);
+            ViewBag.curmessage = _context.Messages
+            .FirstOrDefault(m=>m.MessageId==MessageId);
+
+            return PartialView("_PostComment");
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost("processnewcomment")]
+        public IActionResult ProcessNewComment(Comment NewComment)
+        {
+            
+            int userid = (int)HttpContext.Session.GetInt32("UserId");
+
+            ViewBag.curuser =  _context.Users
+            .FirstOrDefault(u=>u.UserId == userid);
+            ViewBag.curmessage = _context.Messages
+            .FirstOrDefault(m=>m.MessageId==NewComment.MessageId);
+
+            if(ModelState.IsValid)
+            {
+                _context.Comments.Add(NewComment);
+                _context.SaveChanges();
+
+                var html = Helper.RenderRazorViewToString(this, "_ShowMessage", _context.Messages
+                .Include(m=>m.CommentsForMessage)
+                .ThenInclude(c=>c.Creator)
+                .Include(m=>m.Creator)
+                .OrderByDescending(m=>m.UpdatedAt)
+                .ToList());
+                
+                var returnedJson = new
+                {
+                    successful = true,
+                    renderPage = html
+                };
+
+                return Json(returnedJson);
+
+            }else{
+
+                var html = Helper.RenderRazorViewToString(this, "_PostComment", NewComment);
+
+                var returnedJson = new 
+                {
+                    successful = false,
+                    renderPage = html
+                };
+                return Json(returnedJson);
+            }
+        }
 
 
 

@@ -4,15 +4,19 @@
 // Write your JavaScript code.
 
 function showModal(url, title)
-{   
+{   console.log(url);
+    console.log(title);
     $.ajax({
         type:"GET",
         url: url,
         success: function(response){
-
+            console.log(response);
             $("#form-modal .modal-title").html(title);
             $("#form-modal .modal-body").html(response);
             $("#form-modal").modal();
+        },
+        error: function(err){
+            console.log(err);
         }
     });
 }

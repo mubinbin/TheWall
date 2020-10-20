@@ -1,3 +1,15 @@
 @{
-    Layout="_Modal";
+    Layout = null;
 }
+
+@model TheWall.Models.Comment
+
+<form id="new-com-form" method="POST" autocomplete="off" onsubmit="return mespost(this);" asp-controller="Home" asp-action="ProcessNewComment">
+    <div class="form-group">
+        <p><span class="text-danger" asp-validation-for="CommentContent"></span></p>
+        <textarea class="form-control" rows="4" id="comment-text" asp-for="CommentContent"></textarea>
+    </div>
+    <input type="hidden" asp-for="UserId" value = "@ViewBag.curuser.UserId">
+    <input type="hidden" asp-for="MessageId" value="@ViewBag.curmessage.MessageId">
+    <input class="btn btn-primary w-100" type="submit" value="Post">
+</form>

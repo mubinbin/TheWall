@@ -1,0 +1,8 @@
+@model TheWall.Models.Comment
+
+<form method="POST" asp-action="DelMes" style="display: inline-block;" asp-controller="Home" onsubmit="return del(this, 'comment');">
+    <input asp-for="CommentId" type="hidden" value="@Model.CommentId">
+
+    <button style="color:gray; border: none; background-color: transparent;" type="submit" class="col" style="cursor: pointer;" ><i class="fas fa-trash-alt"></i></button>
+
+</form>
